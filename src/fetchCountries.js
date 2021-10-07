@@ -2,7 +2,7 @@ export const countryList = document.querySelector('.country-list');
 export const countryDiv = document.querySelector('.country-info');
 
 export const fetchCountriesFunc = (name) => new Promise((res, rej) => {
-    return fetch(`https://restcountries.com/v2/name/${name}`)
+    return fetch(`https://restcountries.com/v3.1/name/${name}`)
         .then(response => { 
             if (response.status >= 200 && response.status < 300) {
                 return response.json();
