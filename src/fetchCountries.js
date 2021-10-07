@@ -1,27 +1,16 @@
 export const countryList = document.querySelector('.country-list');
 export const countryDiv = document.querySelector('.country-info');
 
-/* export const fetchCountriesFunc = (name) => new Promise((res, rej) => {
-    return fetch(`https://restcountries.com/v3.1/name/${name}`)
+export const fetchCountriesFunc = (name) => new Promise((res, rej) => {
+    return fetch(`https://restcountries.com/v2/name/${name}`)
         .then(response => { 
             if (response.status >= 200 && response.status < 300) {
                 return response.json();
-            } 
+            }
             rej('error request'); 
         }) 
-        .then(data => res(data)); 
-}); */
-
-export function fetchCountriesFunc(name) {
-  return fetch(`https://restcountries.com/v2/name/${name}`)
-    .then(response => {
-        if (!response.ok) {
-            console.log(response);
-          throw new Error(response.status);
-        }          
-      return response.json();
-    })
-};
+        .then(data => res(data))
+});
 
 export const dataCountriesList = (country => {
     countryDiv.innerHTML = '';

@@ -14,6 +14,9 @@ input.addEventListener('input', debounce(event => {
     }
     fetchCountriesFunc(inputText)
         .then((country) => {
+            if (country.status === 404){
+                return Notiflix.Notify.failure("Oops, there is no country with that name")
+            }
             if (country.length > 2 && country.length <= 10) {
                 return dataCountriesList(country);
             } else if (country.length === 1) {
@@ -21,7 +24,6 @@ input.addEventListener('input', debounce(event => {
             } else {
                 return Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
             }
-        })
-        .catch((error) => Notiflix.Notify.failure('Oops, there is no country with that name'));
+        });
 }, 300));
 
