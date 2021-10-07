@@ -6,12 +6,13 @@ import { fetchCountriesFunc, countryList, countryDiv, dataCountriesList, dataCou
 const input = document.querySelector('input#search-box');
 
 input.addEventListener('input', debounce(event => {
-    if (!input.value.trim()) {
+    const inputText = input.value;
+    if (!inputText.trim()) {
         countryList.innerHTML = '';
         countryDiv.innerHTML = '';
         return false;
     }
-    fetchCountriesFunc(input.value)
+    fetchCountriesFunc(inputText)
         .then((country) => {
             if (country.length > 2 && country.length <= 10) {
                 return dataCountriesList(country);

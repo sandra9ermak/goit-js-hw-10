@@ -1,7 +1,7 @@
 export const countryList = document.querySelector('.country-list');
 export const countryDiv = document.querySelector('.country-info');
 
-export const fetchCountriesFunc = (name) => new Promise((res, rej) => {
+/* export const fetchCountriesFunc = (name) => new Promise((res, rej) => {
     return fetch(`https://restcountries.com/v3.1/name/${name}`)
         .then(response => { 
             if (response.status >= 200 && response.status < 300) {
@@ -10,7 +10,18 @@ export const fetchCountriesFunc = (name) => new Promise((res, rej) => {
             rej('error request'); 
         }) 
         .then(data => res(data)); 
-});
+}); */
+
+export function fetchCountriesFunc(name) {
+  return fetch(`https://restcountries.com/v2/name/${name}`)
+    .then(response => {
+        if (!response.ok) {
+            console.log(response);
+          throw new Error(response.status);
+        }          
+      return response.json();
+    })
+};
 
 export const dataCountriesList = (country => {
     countryDiv.innerHTML = '';
